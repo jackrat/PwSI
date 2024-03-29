@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- <div id="log"></div>
+    <hr /> -->
+
+
+    <!-- <canvas id="test0" width="1000" height="1000"></canvas> -->
+
+    <hr />
+    <canvas id="test" width="400" height="300"></canvas>
+    <!-- <hr />
+    <canvas id="test2" width="400" height="300"></canvas> -->
+
+
+
+
+
+
+    <script>
+
+        function rndCol() { return "#" + Math.random().toString(16).substring(3, 6); }
+
+        // let c0 = document.querySelector("#test0");
+        // let ctx0 = null;
+        // if (ctx0 = c0.getContext("2d")) {
+
+        //     ctx0.fillStyle = "#000000";
+        //     ctx0.fillRect(0, 0, 1000, 1100);
+
+        //     ctx0.fillStyle = "rgb(255,0,0)";
+        //     ctx0.fillRect(10, 10, 100, 100);
+
+        //     ctx0.fillStyle = "rgba(255,127,0,0.35)";
+        //     ctx0.fillRect(50, 50, 150, 150);
+
+        //     ctx0.strokeStyle = '#ff0000';
+        //     ctx0.strokeRect(200, 200, 200, 200);
+
+        //     ctx0.fillStyle = 'green';
+        //     ctx0.fillRect(220, 220, 160, 160);
+
+        //     ctx0.fillStyle = 'lime';
+        //     ctx0.fillRect(240, 240, 120, 120);
+
+
+        //     let d = 650;
+        //     var gradient = ctx0.createRadialGradient(200, 600, 10, 200, d, 100);
+        //     gradient.addColorStop(0, rndCol());
+        //     gradient.addColorStop(0.25, rndCol());
+        //     gradient.addColorStop(0.5, rndCol());
+        //     gradient.addColorStop(0.75, rndCol());
+        //     gradient.addColorStop(1, rndCol());
+        //     ctx0.fillStyle = gradient;
+        //     ctx0.fillRect(100, 500, 200, 200);
+        // }
+
+
+
+        let c = document.querySelector("#test");
+        let ctx = null;
+        if (ctx = c.getContext("2d")) {
+
+                    let backCol = "#000";
+                    let foreCol = "#fff";
+
+                    setInterval(() => {
+                        backCol = rndCol();
+                        foreCol = rndCol();
+                    }, 1000);
+
+
+
+                    ctx.fillStyle = backCol;
+                    ctx.fillRect(0, 0, c.width, c.height);
+
+                    let r = 20;
+                    let x = r;
+                    let y = r;
+
+
+                    let dx = 2;
+                    let dy = 2;
+
+                    // setInterval(() => {
+                    //     ctx.fillStyle = backCol;
+                    //     ctx.fillRect(x - r - 1, y - r - 1, 2 * r + 2, 2 * r + 2);
+                    //     x += dx;
+                    //     y += dy;
+                    //     if (x + dx + r > c.width || x + dx - r < 0) { dx = -dx; }
+                    //     if (y + dy + r > c.height || y + dy - r < 0) { dy = -dy; }
+                    //     ctx.fillStyle = foreCol;
+                    //     ctx.beginPath();
+                    //     ctx.arc(x, y, r, 0, Math.PI * 2, true);
+                    //     ctx.fill();
+                    // }, 0);
+
+                    setInterval(() => {
+                        c.width -= 1;
+                        c.height -= 1;
+                        ctx.fillStyle = backCol;
+                        ctx.fillRect(0, 0, c.width, c.height);
+                        if (c.width < 2 * r || c.height < 2 * r) document.location.reload();
+                    }, 100)
+
+
+                    function frame() {
+                        ctx.fillStyle = backCol;
+                        ctx.fillRect(x - r - 1, y - r - 1, 2 * r + 2, 2 * r + 2);
+                        x += dx;
+                        y += dy;
+                        if (x + dx + r > c.width || x + dx - r < 0) { dx = -dx; }
+                        if (y + dy + r > c.height || y + dy - r < 0) { dy = -dy; }
+                        ctx.fillStyle = foreCol;
+                        ctx.beginPath();
+                        ctx.arc(x, y, r, 0, Math.PI * 2, true);
+                        ctx.fill();
+
+                        requestAnimationFrame(frame);
+                    }
+
+                     requestAnimationFrame(frame);
+
+        }
+
+
+
+
+    //     let c2 = document.querySelector("#test2");
+    //     let context = null;
+    //     if (context = c2.getContext("2d")) {
+    //         context.beginPath();
+    //         context.moveTo(75, 25);
+    //         context.quadraticCurveTo(25, 25, 25, 62.5);
+    //         context.quadraticCurveTo(25, 100, 50, 100);
+    //         context.quadraticCurveTo(50, 120, 30, 125);
+    //         context.quadraticCurveTo(60, 120, 65, 100);
+    //         context.quadraticCurveTo(125, 100, 125, 62.5);
+    //         context.quadraticCurveTo(125, 25, 75, 25);
+    //         context.stroke();
+    //     }
+
+
+    //     function testing(canvas) {
+    //         var strDataPng = canvas.toDataURL();
+    //         var my_url = "srv.php";
+
+    //         $.ajax({
+    //             type: "POST",
+    //             url: my_url,
+    //             data: { filecode: strDataPng }
+    //         }).done(function (msg) {
+    //             $("#log").html("OK</br>");
+    //         })
+    //             .fail(() => {
+
+    //             });
+    //     }
+
+
+    //     testing(c2);
+
+    </script>
+
+      <hr/>
+     <a href="anim_3d_1.html">3d 1</a><br/>
+     <a href="anim_3d_2.html">3d 2</a><br/>
+     <a href="anim_3d_3.html">3d 3</a><br/>
+     <a href="anim_3d_4.html">3d 4</a><br/>
+     <a href="anim_3d_5.html">3d 5</a><br/> 
+
+</body>
+
+</html>

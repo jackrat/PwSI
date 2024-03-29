@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello, AX world!</title>
+    <script>
+
+        function doit() {
+            document.querySelector("H1").innerHTML = "wysyłam ...";
+            let el = document.querySelector("#up");
+            el.innerHTML = "";
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = (e) => {
+
+                if (xhr.readyState === 0) { console.log(xhr); }
+                if (xhr.readyState === 1) { console.log(xhr); }
+                if (xhr.readyState === 2) { console.log(xhr); }
+                if (xhr.readyState === 3) { console.log(xhr); }
+                if (xhr.readyState === 4) { console.log(xhr); }
+
+
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.querySelector("#up").innerHTML =
+                        "<br/>response: "
+                        + xhr.response
+                        + "<br/>responseType: "
+                        + xhr.responseType
+                        + "<br/>status i statsText: " + xhr.status + "  " + xhr.statusText;
+                }
+            };
+
+            xhr.onload = (e) => {
+                console.log("event.load");
+                console.log(xhr);
+                document.querySelector("#up2").innerHTML =
+                    xhr.response
+                    + "<br/>responseType: "
+                    + xhr.responseType
+                    + "<br/>status i statsText: " + xhr.status + "  " + xhr.statusText;
+            };
+            xhr.onerror = (e) => {
+                console.log("event.error");
+                console.log(xhr);
+            };
+            xhr.onprogress = (e) => {
+                console.log(e.loaded + "/" + e.total);
+            };
+
+
+
+            xhr.open("GET", "srv.php?a=01234&b=kukuXYZ", true);
+            xhr.send();
+        }
+
+
+
+        function loaded() {
+            document.querySelector("H1").innerHTML = "????Strona odświeżona????";
+        }
+
+    </script>
+
+</head>
+
+<body onload="loaded()">
+    <H1 onclick="this.innerHTML = '';">!!!!Strona odświeżona!!!!</H1>
+    <br /><br /><br />
+    <button onclick="doit()">AX</button>
+    <div id="up">Ala ma kota!</div>
+
+    <div id="up2"></div>
+</body>
+
+</html>

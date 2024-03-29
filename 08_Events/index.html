@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        div {
+            display: block;
+            float: left;
+            border: 1px solid red;
+            padding: 10px;
+            text-align: center;
+            margin: 50px 20px 20px 20px;
+            min-width: 200px;
+            min-height: 200px;
+        }
+
+        fieldset {
+            border: 2px solid green;
+        }
+
+        form {
+            border: 2px solid magenta;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <div id="d1">d1</div>
+        <div id="d2">d2</div>
+        <div id="d3">d3</div>
+        <div id="d4">d4</div>
+    </div>
+
+    <div class="dic" , id="dii">
+        <form class="formc" id="formi">
+            <fieldset id="fsi" class="fsc">
+
+                <p id="ppp">11111111111111</p>
+                <input>
+                <input type="submit" id="sub" />
+                <input type="submit" value="SEND2" id="sub2" />
+                <input type="submit" value="SEND3" id="sub3" />
+                <input type="submit" value="SEND4" id="sub4" />
+                <input type="submit" value="SEND5" id="sub5" />
+                <input type="submit" value="SEND6" id="sub6" />
+
+            </fieldset>
+        </form>
+    </div>
+
+
+
+    <script>
+
+
+        d1.innerHTML += "<br/>Ala ma kota";
+        d1.onclick = function (e) {
+            this.innerHTML += "<br/>To jest z onclick=function()...";
+            event.target.innerHTML += "<br/>za posr. zm event";
+            e.target.innerHTML += "<br/>za posr. par e";
+            d1.innerHTML += "<br/>za posr. zewn zm. d<hr/>";
+        };
+
+        d2.onclick = fun;
+
+        d3.addEventListener("click", fun_d3);
+        d3.addEventListener("click", function (e) {
+            this.innerHTML = this.innerHTML + "<br/>To jest z addList i funkcji anonim i this";
+            event.target.innerHTML = event.target.innerHTML + "<br/>za posr. zm event";
+            e.target.innerHTML = e.target.innerHTML + "<br/>za posr. par e<hr/>";
+        });
+        d3.addEventListener("click", e => {
+            //this.innerHTML ="olkjo[ij";
+            e.target.innerHTML += "wewn fun => this = " + this;
+        });
+        const fun_d3_arr = e => e.currentTarget.innerHTML += "<br/>zewn fun => this = " + this;
+        d3.addEventListener("click", fun_d3_arr);
+
+        d4.onclick = (e) => { e.target.innerHTML += "wewn fun => this = " + this };
+
+
+        function fun(e) {
+            this.innerHTML = this.innerHTML + "<br/>To jest z onclick=function()...";
+            event.target.innerHTML = event.target.innerHTML + "<br/>za posr. zm event";
+            e.target.innerHTML = e.target.innerHTML + "<br/>za posr. par e";
+            d2.innerHTML = d2.innerHTML + "<br/>za posr. zewn zm. d2<hr/>";
+        };
+
+        function fun_d3(e) {
+            this.innerHTML = this.innerHTML + "<br/>To jest z addEventListener(onclick)";
+            event.target.innerHTML = event.target.innerHTML + "<br/>za posr. zm event";
+            e.target.innerHTML = e.target.innerHTML + "<br/>za posr. par e";
+            d3.innerHTML = d3.innerHTML + "<br/>za posr. zewn zm. d3<hr/>";
+        };
+        function fun_sub3(e) {
+            ppp.innerHTML = "33333333333333";
+            return false;
+        };
+
+
+        sub.onclick = function (e) {
+            ppp.innerHTML = "2222222222222222222";
+            return false;
+        };
+
+        sub2.onclick = (e) => {
+            ppp.innerHTML = "2222222222222222222";
+            return false;
+        };
+
+        sub3.onclick = fun_sub3;
+
+        sub4.addEventListener("click", (e) => {
+            ppp.innerHTML = "44444444";
+            e.preventDefault();//bo return false w EventListener nie działa
+        });
+
+        sub5.addEventListener("click", () => {
+            ppp.innerHTML += " 111 ";
+            event.preventDefault();
+        });
+
+        sub5.onclick = (e) => {
+            ppp.innerHTML += "222 ";
+            e.preventDefault();
+        };
+
+        sub5.addEventListener("click", () => {
+            ppp.innerHTML += "333";
+            event.preventDefault();
+        });
+
+        sub6.addEventListener("click", () => {
+            sub5.click();
+            event.preventDefault();
+        });
+
+
+
+        function addEl(ele,col) {
+            ele.style.border="3px solid "+col;
+            let el = document.createElement("div");
+            el.style.display = "block";
+            el.style.minHeight = "10px";
+            el.style.backgroundColor = "#" + Math.random().toString(16).substr(2, 8);
+            let ddd = "dupa";
+            const s =`znaleziono: ${el.nodeName}.${ele.className}#${ele.id}`;
+            el.innerHTML = s;
+            return el;
+        }
+
+
+        //szukanie wśród parentów i parentów parentów i...
+        let el
+        el = sub6.closest("#fsi");//szukanie parenta po id
+        if (el !== null) if (el !== null) el.appendChild(addEl(el,"lime"));
+        el = sub6.closest(".formc");//szukanie parenta po klasie
+        if (el !== null) el.appendChild(addEl(el,"magenta"));
+        el = sub6.closest("div");//szukanie parenta po znaczniku
+        if (el !== null) el.appendChild(addEl(el,"cyan"));
+
+
+    </script>
+</body>
+
+</html>

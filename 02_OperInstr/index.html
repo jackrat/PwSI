@@ -1,0 +1,278 @@
+<script>
+
+    // let a = 102;
+    // let s = "102";
+    // if (a > s)
+    //     document.write(">");
+    //     else if(a==s)
+    //     document.write("=");
+    // else
+    //     document.write("<<F>>");
+
+
+    // let a = 102;
+    // let s = "103";
+    // if (a === s)
+    //     document.write("===");    
+    // else
+    //     document.write("!==");
+
+
+    // const nr = prompt("Podaj jakąś liczbę");
+    // if (nr > -1e307) { //jeżeli...
+    //     console.log("Liczba jest większa od 20");
+    // } else { //w przeciwnym razie...
+    //     console.log("Liczba jest mniejsza lub równa od 20");
+    // }
+
+
+    // console.log("ab" > "aa"); //true
+    // console.log("pies" > "kot"); //true
+    // console.log("abc" > "acc"); //false
+    // console.log("alicja" > "bela"); //false
+    // console.log("Marcin" > "Ania"); //true
+    // console.log("111" > "99"); //??
+    // console.log("pie" > "pies"); //??
+
+
+    // console.log("3" > 2); //true bo 3 > 2
+    // console.log("02" > 3); //false bo 2 > 3 chyba
+    // console.log("0" == 0); //true
+
+    // console.log(true > 2); //false bo true to 1
+    // console.log(false < 2); //true bo false to 0
+
+    // console.log("Ala" > 0); //false bo konwersja "Ala" na liczbę to NaN (NonANumber), a NaN jest mniejsze od każdej liczby
+    // console.log("Kot" > -Infinity); //false - to samo co powyżej. NaN jest mniejsze od każdej liczby
+
+
+
+
+    // const nr = Number(prompt("Podaj liczbę z zakresu 1-10"));
+    // if (nr > 5)
+    //     console.log(">");
+    // else
+    //     console.log("nie >");
+
+
+    //wartości zawsze fałszywe
+    // if (false) { ... }
+    // if (null) { ... }
+    // if (undefined) { ... }
+    // if (0) { ... }
+    // if (NaN) { ... }
+    // if ("") { ... }
+    // if (document.all) { ... } //do wyjasnienia
+
+    // while (x = read())
+    // {
+
+    // }
+
+    // const a = 20;
+    // const b = 0;
+    // const c = null;
+    // if (a) { //to się wykona bo a !== 0
+    //     console.log("a ma wartość ", a);
+    // }
+    // if (b) { //to się nie wykona bo b === 0
+    //     console.log("b ma wartość ", b);
+    // }
+    // if (c) { //to się nie wykona bo null
+    //     console.log("c ma wartość ", c);
+    // }
+    // if (false) { //to się nie wykona bo false to false
+    //     console.log("false ma wartość false");
+    // }
+
+
+
+
+
+
+
+    // Boolean(false); //false
+    // Boolean(null); //false
+    // Boolean(undefined); //false
+    // Boolean(0); //false
+    // Boolean(NaN); //false
+    // Boolean(""); //false
+    // Boolean(document.all); //false
+    // Boolean("Ala"); //true
+    // Boolean(2); //true
+    // Boolean(2 - 2); //false
+    // const x;
+    // Boolean(x); //false bo x nie ma wartości czyli undefined
+    // console.log(Boolean(document.all)); //ewenement
+
+
+
+    // const s = "12345";
+    // const n = 12345;
+    // console.log(s.length);
+    // console.log(n.length);
+    // n.length = "Ala ma kota";
+    // console.log(n.length);
+    // s.kuku = 67;
+    // console.log(s.kuku);
+
+
+    // if (a === s) document.write("===");
+    // else if (true) { }
+    // else if (true) { }
+    // else if (true) { }
+    // else document.write("!==");
+
+
+
+    // let wyrazenie;
+    // const x = wyrazenie ? 1 : 0;
+    // console.log(x);
+
+
+
+    /*
+        switch (wyrazenie) {
+        case wartosc1:
+            //fragment wykonywany gdy rezultat wyrażenia jest równy rezultat1 - potrzebuje break;
+            break;
+        case wartosc2:
+            //fragment wykonywany gdy rezultat wyrażenia jest równy rezultat2 - potrzebuje break;
+            break;
+        default:
+            //fragment wykonywany gdy powyższe rezultaty nie są równe rezultatowi wyrażenia - nie potrzebuje break;
+        }
+    */
+
+
+
+    //Uwaga na breaki
+    // const number = prompt("Wpisz jakiego masz zwierzaka");
+    // switch (number) {
+    //     case "pies":
+    //         console.log("Psy są najlepsze");            
+    //     case "kot":
+    //         console.log("Koty są lepsze od psów");
+    //         break;
+    //     case "chomik":
+    //         console.log("Każdy chomik jest super");
+    //         break;
+    //     case "świnka":
+    //         console.log("Świnki są fajowe");
+    //         break;
+    //     default:
+    //         console.log("Jakiś dziwny ten zwierzak");
+    // }
+
+
+
+
+    //poniższe przyrównywanie nie zadziała
+    // const nr = 5;
+    // switch (nr) {
+    //     case (nr >= 5):
+    //         console.log("Mało");
+    //         break;
+    //     case (nr > 5 && nr <= 10):
+    //         console.log("Średnio");
+    //         break;
+    //     case (nr > 15):
+    //         console.log("Dużo");
+    //         break;
+    // }
+
+
+
+
+    // const nr = 5;
+    // switch (true) {
+    //     case (nr >= 5):
+    //         console.log("Mało");
+    //         break;
+    //     case (nr > 5 && nr <= 10):
+    //         console.log("Średnio");
+    //         break;
+    //     case (nr > 15):
+    //         console.log("Dużo");
+    //         break;
+    // }
+
+
+
+
+
+    //pętla od 0 do 99
+    // for (let i = 0; i < 100; i++) {
+    //     console.log("Nie będę rozmawiał na lekcji Informatyki.");
+    // }
+
+    // for (let i = 0; i < 100;) {        
+    //     i = 200 * Math.random();
+    //     console.log(i, "    Nie będę rozmawiał na lekcji Informatyki.");
+    // }
+    // console.log("koniec pętli");
+
+
+
+    // for (; true;) {
+    //     i = 200 * Math.random();
+    //     console.log(i, "    Nie będę rozmawiał na lekcji Informatyki.");
+    //     if (i > 150)
+    //         break;
+    // }
+
+
+    // for (; ;) {
+    //     i = 200 * Math.random();
+    //     console.log(i, "    Nie będę rozmawiał na lekcji Informatyki.");
+    //     if (i > 150)
+    //         break;
+    // }
+
+
+    // let i = 1;
+    // while (i <= 100) {
+    //     console.log(i, "Nie będę...");
+    //     i++;
+    // }
+
+
+    // let i = 0;
+    // do {
+    //     i++;
+    //     console.log(i);
+    // } while (i < 5);
+
+
+
+    // const tab = ["Ala", "Monika", "Beata", "Karol", "Alicja"];
+    // for (let i = 0; i < tab.length; i++) {
+    //     if (tab[i] === "Karol") {
+    //         continue; //Karola pomiń
+    //     }
+    //     console.log(tab[i]);
+    // }
+
+
+    first:
+    for (let i = 0; i < 10; i++) {
+        second:
+        for (let j = 0; j < 10; j++) {
+            if (j === 3) 
+            break first; //przerywam główną pętlę
+        }
+    }
+
+    loopA:
+    for (let i = 0; i < 10; i++) {
+        loopB:
+        for (let j = 0; j < 10; j++) {
+            if (j == 3) 
+            continue loopA;
+        }
+    }
+
+
+
+
+</script>

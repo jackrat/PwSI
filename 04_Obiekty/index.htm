@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+  <script>
+    let myObj2;
+
+    function print(l, o) {
+      document.write(l, ": ", o, "<br /><br />");
+    }
+
+
+    function fun() {
+      return "To jest efekt działania funkcji fun(); a this to: "
+        + this + " "
+        + (this === myObj2);
+    }
+
+  </script>
+</head>
+
+<body>
+  <script>
+    var myObj = new Object();
+    print("myObj", myObj);
+    myObj.Prop1 = "Ala ma kota";
+    myObj.Prop2 = 1 / 3;
+    print("myObj.Prop1", myObj.Prop1);
+    print("myObj.Prop2", myObj.Prop2);
+
+
+
+    print("fun()", fun());
+
+    myObj.metoda1 = fun;
+    print("myObj.metoda1()", myObj.metoda1());
+
+    myObj.metoda2 = function () {
+      return "to jest efekt zadziałania metody myObj.metoda2(),"
+        + " zaś this to: " + this;
+    };
+    print("myObj.metoda2()", myObj.metoda2());
+
+    myObj.metoda3 = () => {
+      return "to jest efekt zadziałania metody myObj.metoda3(),"
+        + " zaś this to: " + this;
+    };
+    print("myObj.metoda3()", myObj.metoda3());
+
+
+    myObj2 = new Object();
+    myObj2.metoda4 = fun;
+    print("myObj.metoda4()", myObj2.metoda4());
+
+
+    const myObj3 = {
+      PropA: "A kot ma Alę",
+      PropB: Math.PI,
+
+      metoda5: function () {
+        return "to jest efekt zadziałania metody myObj3.metoda5(),"
+          + " zaś this to: " + this + " " + (this === myObj3);
+      },
+
+      "Prop C": "Właściwość indeksowana Prop C",
+
+      "metoda 7": function () {
+        return "to jest efekt zadziałania metody myObj3.metoda7(),"
+          + " zaś this to: " + this + " " + (this === myObj3);
+      },
+
+      "PropD": 1 / 3,
+
+      metoda8: () => {
+        return "to jest efekt zadziałania metody myObj3.metoda8(),"
+          + " zaś this to: " + this + " " + (this === myObj3);
+      }
+
+    };
+
+    print("myObj3.PropB", myObj3.PropB);
+    print("myObj3.metoda5()", myObj3.metoda5());
+
+    myObj2.metoda6 = myObj3.metoda5;
+    print("myObj2.metoda6()", myObj2.metoda6());
+
+    print("myObj3[\"Prop C\"]", myObj3["Prop C"]);
+    print("myObj3[\"PropA\"]", myObj3["PropA"]);
+    print("myObj3[\"metoda5\"]()", myObj3["metoda5"]());
+    print("myObj3[\"metoda 7\"]()", myObj3["metoda 7"]());
+    print("myObj3.PropD", myObj3.PropD);
+
+    myObj3.PropE = "Property E";
+    print("myObj3.PropE", myObj3.PropE);
+
+    print("myObj3.metoda8()", myObj3.metoda8());
+
+
+    print("", "=====================================================");
+
+    function MojaKlasa() {
+      this.PropF = "Psy i koty";
+      this.PropG = 333 / 444;
+      this.metoda9 = function () {
+        return "to jest efekt zadziałania metody myObj4.metoda9(),"
+          + " zaś this to: " + this + " " + (this === myObj4);
+      }
+      this.metoda10 = () => {
+        return "to jest efekt zadziałania metody myObj4.metoda10(),"
+          + " zaś this to: " + this + " " + (this === myObj4);
+      }
+      this["Ala ma kota"] = "Ola ma psa";
+
+    }
+
+
+    var myObj4 = new MojaKlasa();
+    print("myObj4.PropF", myObj4.PropF);
+    print("myObj4.PropG", myObj4.PropG);
+    print("myObj4.metoda9()", myObj4.metoda9());
+    print("myObj4.metoda10()", myObj4.metoda10());
+    print("myObj4[\"Ala ma kota\"]", myObj4["Ala ma kota"]);
+
+    print("", "=====================================================");
+
+    console.log(Object.getOwnPropertyDescriptor(myObj4, "PropF"));
+
+
+
+
+  </script>
+</body>
+
+</html>

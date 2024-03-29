@@ -1,0 +1,196 @@
+<html>
+
+<head>
+    <style>
+        div {
+            position: absolute;
+            border: 1px solid red;
+            padding: 5px;
+            display: box;
+            text-align: center;
+        }
+
+        .intersec {
+            background-color: red;
+        }
+
+        .rogi {
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+    <title>DOM</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        var n = 11;
+        for (let j = 0; j < n; j++) {
+            for (let i = 0; i < n; i++) {
+                const el = document.createElement("div");
+                el.innerHTML = (i + 1) * (j + 1);
+                el.style.left = (j + 1) * 40 + "px";
+                el.style.top = (i + 1) * 35 + "px";
+                el.style.width = "25px";
+                el.id = "d_" + j + "_" + i;
+
+                if ((i == j) || (i == (n - 1 - j))) {
+                    el.className = "intersec";
+                    if (i == 0 || j == 0 || i == (n - 1) || j == (n - 1))
+                        el.classList.add("rogi");
+                    el.prz = 1;
+                    el.setAttribute("przek", Math.floor(Math.random() * 5));
+                }
+                else
+                    el.style.backgroundColor = "#" + Math.random().toString(16).substr(2, 6);
+
+                if (Math.random() > 0.5)
+                    el.classList.add("hhh");
+
+                document.body.appendChild(el);
+            }
+            let b = document.createElement("button");
+            b.innerText = j;
+            b.setAttribute("onclick", "f" + j + "();");
+            document.body.appendChild(b);
+        }
+
+
+        let di = document.createElement("div");
+        di.style.left = "120px";
+        di.style.top = "80px";
+        di.style.backgroundColor = "#FFFFFF";
+        di.style.opacity = "0.75";
+        di.className = "di";
+        document.body.appendChild(di);
+
+        for (let i = 1; i <= 6; i++) {
+            let h = document.createElement("h" + i);
+            h.innerHTML = "To jest nagłówek H" + i;
+            if (i == 3)
+                h.className = "hhh";
+            di.appendChild(h);
+
+
+            let h2b = document.createElement("p");
+            h2b.innerHTML = "Ala ma kota";
+            h2b.style.margin = "5px";
+            if (i == 3)
+                h2b.classList.add("hhhHHH");
+            h.appendChild(h2b);
+        }
+
+
+
+        function f0() {
+            for (let i = 0; i < n; i++) {
+                let el = document.getElementById("d_" + i + "_" + i);
+                el.style.backgroundColor = "lime";
+                el = document.getElementById("d_" + i + "_" + (n - 1 - i));
+                el.style.backgroundColor = "lime";
+            }
+
+
+        }
+        function f1() {
+            let els = document.getElementsByClassName("intersec");
+            for (let i = els.length - 1; i >= 0; i--)
+                els[i].parentNode.removeChild(els[i]);
+        }
+
+        function f2() {
+            let els = document.getElementsByTagName("div");
+            Array.from(els).forEach(el => {
+                if (el.className == "intersec")
+                    el.parentNode.removeChild(el);
+            });
+        }
+        function f3() {
+            let d;
+            while (d = document.querySelector(".intersec"))
+                d.parentNode.removeChild(d);
+        }
+        function f4() {
+            var d = document.querySelectorAll(".intersec");
+            d.forEach(el => {
+                el.parentElement.removeChild(el);
+            });
+
+        }
+        function f5() {
+            let els = document.getElementsByClassName("intersec");
+            while (els.length > 0)
+                els[0].parentNode.removeChild(els[0]);
+        }
+
+        function f6() {
+            let divy = document.getElementsByTagName("div");
+
+            // for (let i = divy.length - 1; i >= 0; i--) {
+            //     if (divy[i].className == "intersec")
+            //         divy[i].parentElement.removeChild(divy[i]);
+
+            for (let i = divy.length - 1; i >= 0; i--) {
+                if (divy[i].classList.contains("intersec"))
+                    divy[i].parentElement.removeChild(divy[i]);
+
+            }
+
+        }
+        function f7() {
+            let all = document.all;
+            // Array.from(all).forEach(el => {
+            //     if (el.prz === 1)
+            //         el.parentElement.removeChild(el);
+            // })
+
+            // Array.from(all).forEach(el => {
+            //     if (el.prz === undefined)
+            //         if (el.parentElement != undefined)
+            //           el.parentElement.removeChild(el);
+            // })
+
+            for (let i = all.length - 1; i >= 0; i--) {
+                if (all[i].prz !== undefined)
+                    all[i].parentElement.removeChild(all[i]);
+            }
+
+        }
+        function f8() {
+            let all = document.all;
+            // for (let i = all.length - 1; i >= 0; i--) {
+            //     if (all[i].hasAttribute("przek"))
+            //         all[i].parentElement.removeChild(all[i]);
+            // }
+            for (let i = all.length - 1; i >= 0; i--) {
+                if (all[i].getAttribute("przek") == 1)
+                    all[i].parentElement.removeChild(all[i]);
+            }
+        }
+
+
+        function f9() {
+            let h1 = document.querySelector("h1");
+            h1.innerHTML += " !!!";
+            let h6 = document.querySelector("h6");
+            h6.innerHTML += " !!!";
+            h1.replaceWith(h6);
+            di.appendChild(h1);
+
+
+
+        }
+
+
+        function f10() {
+            let hH = document.querySelector(".di .hhh .hhhHHH");
+            hH.innerHTML = "!!! " + hH.innerHTML;
+        }
+
+    </script>
+</body>
+
+</html>

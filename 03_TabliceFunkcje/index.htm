@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<script type="text/javascript">
+
+	</script>
+</head>
+
+<body>
+
+
+	<h1 id="h" style="font-weight:bolder;">Test tytuł <i>!!!</i></h1>
+
+	<script type="text/javascript">
+
+		let el = document.getElementById("h");
+		el.innerHTML = "Nagłowek 123"
+
+
+		const tab = [];// zeroelementowa
+		const tab1 = [1, 3, 77, 55];
+		const tab2 = ["Ala", "ma", "kota"];
+		const tab3 = [1, "ma", 3];
+
+
+		let z = tab1[0];
+		document.write(z);
+
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />", tab2[i]);
+
+		document.write("======================================================");
+
+		tab2.push(Math.random());
+		tab2.push(Math.random());
+		tab2.push(Math.random());
+
+		tab2[0] = "Krzysiek";
+
+		tab2[20] = "!!!Krzysiek!!!";
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />", i, "   ", tab2[i]);
+
+
+		const ta = ["ala", "bala"];
+		const ob = { name: "Piotr" };
+
+		// const ta = [];
+		// const ob = { };
+		console.log(ta);
+		console.log(ob);
+
+		document.writeln(Array.isArray(ta));
+		document.writeln(Array.isArray(ob));
+
+		document.writeln("<br/>");
+
+		document.writeln(typeof ta);
+		document.writeln(typeof ob);
+
+
+		document.writeln("<br/>");
+		document.writeln("<br/>");
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />", i, "   ", tab2[i]);
+
+		tab2.pop();
+		tab2.pop();
+		tab2.pop();
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />", i, "   ", tab2[i]);
+
+
+		// for (let i = 0; i < tab2.length + 100; i++)
+		// 	tab2.pop();
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />po popach", i, "   ", tab2[i]);
+
+
+		tab2.shift();
+		tab2.shift();
+		tab2.shift();
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />po shiftach", i, "   ", tab2[i]);
+
+
+		tab2.unshift("Coś1");
+		tab2.unshift("Coś2");
+		tab2.unshift("Coś3");
+
+		for (let i = 0; i < tab2.length; i++)
+			document.write("<br />po unshiftach", i, "   ", tab2[i]);
+
+		let y = tab2.join();
+		console.log(y);
+		document.writeln(y);
+
+
+		y = tab2.join("-=<>=-");
+		console.log(y);
+		document.writeln(y);
+
+
+		const txt = "Ala ma kota ma";
+		const tab4 = txt.split(" ");
+		tab4.reverse();
+		console.log(tab4);
+		tab4.sort();
+
+		console.log(tab4.indexOf("ma"));
+		console.log(tab4.lastIndexOf("ma"));
+		console.log(tab4);
+
+
+		console.log(ident());
+		function ident() {
+			return "ident się melduje"; // return
+		}
+		console.log(ident());
+
+
+		function fun2(a, b, c) {
+			document.writeln("<h1>" + a + " + " + b + " + " + c + "</h1>");
+		}
+
+		fun2("Ala", "ma", "kota");
+		fun2();
+		fun2("Ala");
+		fun2("Ala", "ma", "kota", "!!!");
+
+
+
+		function fun3(a, b = "domyślny ....", c = "domyślny kot") {
+			document.writeln("<h3>" + a + " + " + b + " + " + c + "</h3>");
+		}
+		fun3();
+		fun3("Janek");
+		fun3("Ala", "ma", "kota");
+
+
+		function fun4(a, b, c) {
+			{
+				{
+					if (b === undefined)
+						b = "domyślny MA";
+					document.writeln("<h2>" + a + " + " + b + " + " + c + "</h2>");
+				}
+			}
+		}
+		fun4();
+
+
+
+		function fun5() {
+			if (arguments.length > 0)
+				for (let i = 0; i < arguments.length; i++)
+					document.writeln("<h5>" + arguments[i] + "</h5>");
+
+			document.writeln("<div>" + Array.isArray(arguments) + "</div>");
+
+			// arguments.forEach(el => {
+			// 	document.writeln("<h2>"+el+"</h2>");
+			// }); Error bo nie tablica
+
+
+		}
+		fun5("Ala");
+		fun5("Ala", "ma", "kota");
+
+
+		function fun6(...args) {
+
+			if (args.length > 0)
+				for (let i = 0; i < args.length; i++)
+					document.writeln("<h5>" + args[i] + "</h5>");
+
+			document.writeln("<div>" + Array.isArray(args) + "</div>");
+
+			args.forEach(el => {
+				document.writeln("<h2>" + el + "</h2>");
+			}); //A to nie jest już błąd!
+
+
+		}
+
+		fun6("Ala2");
+		fun6("Ala3", "ma3", "kota3");
+
+		//fun7();ERROR
+
+		fun7 = function () {
+			document.writeln("<h5>Ala ma kota</h5>");
+		}
+		fun8 = function () {
+			document.writeln("<h5>Ola ma psa</h5>");
+		}
+
+
+		fun9 = par1 => {
+			document.writeln("<h5>par1: " + par1 + "</h5>");
+		}
+
+		fun10 = (par1, par2) => {
+			document.writeln("<h5>par1: " + par1 + "  par2: " + par2 + " </h5>");
+		}
+
+		//arguments jest niezdefiniowane
+		// fun11 = () => {
+		// 	for (let i = 0; i < arguments.length; i++)
+		// 		document.writeln("<h5>arg " + i + "  : " + arguments[i] + "  </h5>");
+		// }
+
+
+		fun12 = (...el) => {
+			for (let i = 0; i < el.length; i++)
+				document.writeln("<h5>arg " + i + "  : " + el[i] + "  </h5>");
+		}
+			
+
+		let ff = fun7;
+		ff();
+		ff = fun8;
+		ff();
+		ff = fun4;
+		ff(24, 436, 33333);
+		ff = fun9;
+		ff("Kotek")
+		ff = fun10;
+		ff(12, 13);
+
+		// ff = fun11;
+		// ff("ttt");
+
+		ff = fun12;
+		ff("ttt",2354,24524,33,33);
+
+	</script>
+</body>
+
+</html>

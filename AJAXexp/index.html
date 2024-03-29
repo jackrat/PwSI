@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        textarea {
+            margin: 0px;
+            width: 95%;
+            height: 20%;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button id="bcre">CRE table</button>
+    <button id="bdro">DROP table</button>
+    <button id="bfil">FILL table</button>
+    <button id="bdel">DEL table</button>
+    <button id="bsel">SEL table</button>
+    <br /><br />
+    <div id="ob"></div>
+
+
+
+    <textarea id="ta"></textarea>
+
+    <script>
+        const Mgr = {
+            ajaxReq: (s) => {
+                let xhr = new XMLHttpRequest();
+                xhr.addEventListener("readystatechange", (e) => {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        let sresults = JSON.parse(xhr.response);
+                        document.querySelector("#ta").innerHTML += sresults.msg + "\r\n";
+                        let resObj = JSON.parse(sresults.obj);
+                        if (resObj != null) Mgr.drawTable(resObj);
+                    }
+                });
+                xhr.open("GET", "srv.php?act=" + s, true);
+                xhr.send(null);
+            },
+            createTable: (e) => { Mgr.ajaxReq("1"); },
+            dropTable: (e) => { Mgr.ajaxReq("2"); },
+            fillTable: (e) => { Mgr.ajaxReq("3"); },
+            delTable: (e) => { Mgr.ajaxReq("4"); },
+            selTable: (e) => { Mgr.ajaxReq("5"); },
+            drawTable: (resObj) => {
+                let divOb = document.querySelector("#ob");
+                divOb.innerHTML = "";
+                let tab = document.createElement("table");
+                divOb.appendChild(tab);
+                for (let di = 0; di <= 7; di++) {
+                    let tr = document.createElement("tr");
+                    tab.appendChild(tr);
+
+                    let th = document.createElement("th");
+                    tr.appendChild(th);
+                    if (di > 0) th.innerHTML = di; else th.innerHTML = "dzień\\godz";
+
+                    for (let hi = 8; hi <= 20; hi++) {
+                        let td = document.createElement("td");
+                        tr.appendChild(td);
+                        if (di === 0) td.innerHTML = "<div style='width:30px;'>" + hi + "</div>";
+                    }
+                }
+                for (let rob in resObj) {
+                    let obj = resObj[rob];
+                    let tr = tab.children[obj.day];
+                    let td = tr.children[obj.hour - 7];
+                    td.innerHTML = obj.room;
+                    td.style.backgroundColor = obj.color;                    
+                }
+            }
+        };
+
+
+        document.querySelector("#bcre").addEventListener("click", Mgr.createTable);
+        document.querySelector("#bdro").addEventListener("click", Mgr.dropTable);
+        document.querySelector("#bfil").addEventListener("click", Mgr.fillTable);
+        document.querySelector("#bdel").addEventListener("click", Mgr.delTable);
+        document.querySelector("#bsel").addEventListener("click", Mgr.selTable);
+    </script>
+</body>
+
+</html>

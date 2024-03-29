@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello, AX world!</title>
+    <script>
+
+        function doit() {
+            document.querySelector("H1").innerHTML = "wysyłam ...";
+            let el = document.querySelector("#up");
+            el.innerHTML = "";
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = (e) => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.querySelector("#up").innerHTML = "<br/>response: " + xhr.response;
+                }
+            };            
+            //xhr.open("GET", "srv.php", true);            
+            xhr.open("GET", "srv.php?a=01234&b=kuku", true);            
+            xhr.send();
+        }
+
+
+
+        function loaded() {
+            document.querySelector("H1").innerHTML = "????Strona odświeżona????";
+        }
+
+    </script>
+
+</head>
+
+<body onload="loaded()">
+    <H1 onclick="this.innerHTML = '';">!!!!Strona odświeżona!!!!</H1>
+    <br /><br /><br />
+    <button onclick="doit()">AX</button>
+    <div id="up">Ala ma kota!</div>
+</body>
+
+</html>

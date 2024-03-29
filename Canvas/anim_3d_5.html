@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: #1d1d1d;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 6px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .box2 {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      border-radius: 6px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .green {
+      background-color: #6fb936;
+    }
+
+    .orange {
+      background-color: #f38630;
+    }
+
+    .grey {
+      background-color: #989898;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js"></script>
+</head>
+
+<body>
+  <div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+    <div class="box green"></div>
+    <div class="box grey"></div>
+    <div class="box orange"></div>
+  </div>
+  <br />
+  <br /> <br />
+  <br />
+  <div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+    <div class="box2 green"></div>
+    <div class="box2 grey"></div>
+    <div class="box2 orange"></div>
+  </div>
+
+
+
+  <script>
+    gsap.to(".box", { duration: 1, rotation: 360, y: 80, stagger: 0.1 });   
+    gsap.to(".box2", { duration: .5, rotation: 360, y: 150, stagger: 0.5 });   
+  </script>
+
+
+</body>
+
+</html>

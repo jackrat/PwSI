@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+
+  <script type="text/javascript">
+    //alert("!!! Witaj świecie! z HEAD");
+	console.log("!!! Witaj świecie! z HEAD");
+  </script>
+</head>
+<body>
+<script>
+   let el = document.getElementById("h");
+   //el.innerHTML = "Nagłowek 123"  
+</script>  
+  
+	<h1 id="h" style="font-weight:bolder;">Test tytuł <i>!!!</i></h1>
+	
+	<script type="text/javascript">
+      //alert("Witaj świecie! z końca BODY");
+	  var x = document.getElementById("h");
+	  var s = x.InnerHTMLx;         // To nie powoduje błędu, ale dynamicznie
+	  x.InnerHTMLx = "???????????"; // dodaje do obiektu nowe pole.
+	  //alert(s);
+	  x.InnerHTML = "Hello world!!!";
+	  //alert(x.InnerHTML);
+	  //alert(x.InnerHTMLx);
+	  console.log(x.InnerHTMLx);
+	  
+	  console.log("=============================");
+	  
+	  var xyz;
+	  xyz = "123";
+	  var abc = 666;
+	  console.log(xyz + " Ala ma..." + 345);
+	  console.log(abc + " Ola ma..." );
+	  
+	  var a = 1;
+	  var b = 0;
+	  var c = -1;
+	  var delta = b*b - 4*a*c;
+	  if (delta < 0)
+	     x.innerHTML = "Brak rozwiązań!";
+	  else if (delta == 0)
+	  {
+	    var x0 = -b/(2*a); 
+		x.innerHTML = "x0 = " + x0;
+	  }
+	  else
+	  {
+	    var x1 = (-b - Math.sqrt(delta))/(2*a); 
+		var x2 = (-b + Math.sqrt(delta))/(2*a); 
+		x.innerHTML = "x1 = " + x1 + "<br />   x2 = " + x2;
+	  }
+	  
+	  
+	 const c2 = 234;  //sprawdzić czy blokowy czy funkcyjny ???
+	 
+	 if(delta > 0)
+	 {
+	   var d2 = 1000; // zakres funkcyjny
+	   let d = 3000;  //zakres blokowy : {...}
+	   d *= 2;
+	   d2 *= 2;
+	 }
+	 //alert(d);      // zmienna typu let nie jest dostępna poza blokiem {...}
+	 alert(d2);       // zmienna typu var jest dostępna poza blokiem
+	 	 
+	  
+  </script>
+</body>
+</html>

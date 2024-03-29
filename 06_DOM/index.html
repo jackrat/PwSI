@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <style>
+        div {
+            position: absolute;
+            border: 1px solid red;
+            padding: 5px;
+            display: box;
+            text-align: center;
+        }
+        .intersec {
+            background-color: red;
+        }        
+    </style>
+    <title>DOM</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        var n = 11;
+        for (let j = 0; j < n; j++) {
+            for (let i = 0; i < n; i++) {
+                const el = document.createElement("div");
+                el.innerHTML = (i + 1) * (j + 1);
+                el.style.left = (j + 1) * 40 + "px";
+                el.style.top = (i + 1) * 35 + "px";
+                el.style.width = "25px";
+                el.id = "d_" + j + "_" + i;
+
+                if ((i == j) || (i == (n - 1 - j)))
+                    el.className = "intersec";
+                else
+                    el.style.backgroundColor = "#" + Math.random().toString(16).substr(2, 6);
+
+                document.body.appendChild(el);
+            }
+            let b = document.createElement("button");
+            b.innerText = j;
+            b.setAttribute("onclick", "f" + j + "();");
+            document.body.appendChild(b);
+        }
+
+
+
+        function f0() {
+            for (let i = 0; i < n; i++) {
+                let el = document.getElementById("d_" + i + "_" + i);
+                el.style.backgroundColor = "lime";
+                el = document.getElementById("d_" + i + "_" + (n - 1 - i));
+                el.style.backgroundColor = "lime";
+            }
+
+
+        }
+        function f1() {
+            let els = document.getElementsByClassName("intersec");
+            for (let i = els.length - 1; i >= 0; i--)
+                els[i].parentNode.removeChild(els[i]);
+        }
+
+        function f2() {
+            let els = document.getElementsByTagName("div");
+            Array.from(els).forEach(el => {
+                if (el.className == "intersec")                    
+                 el.parentNode.removeChild(el);
+            });
+        }
+        function f3() {
+            let d;
+            while (d = document.querySelector(".intersec"))
+                d.parentNode.removeChild(d);
+        }
+        function f4() { }
+        function f5() { }
+        function f6() { }
+        function f7() { }
+        function f8() { }
+        function f9() { }
+        function f10() { }
+
+    </script>
+</body>
+
+</html>

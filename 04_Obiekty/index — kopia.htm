@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+  <script>
+
+
+    function print(l, o) {
+      document.write(l, ": ", o, "<br />");
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <script>
+    var myObj = new Object();
+    myObj.key = "value";
+
+    print("myObj", myObj);
+    print("myObj.key", myObj.key);
+
+
+    xyz = {
+      w1: "str",
+      w2: 123,
+      add1: () => {
+        return this;
+      }
+
+    };
+
+    print("xyz.add1()", xyz.add1());
+    xyz.noweProp = "Ala ma kota";
+    print("xyz.noweProp", xyz.noweProp);
+
+    function fun1() {
+      return "wartość z nowej metody fun1" + this.w2;
+    }
+
+    xyz.nowaMet = fun1;
+    print("xyz.nowaMet()", xyz.nowaMet());
+    print("xyz[\"nowaMet\"'](): ", xyz["nowaMet"]());
+    print("fun1()", fun1());
+
+
+
+    const calendar = {
+      "2020-11-11": "Narodowe Święto Niepodległości"
+    }
+
+
+
+    print("calendar[\"2020-11-11\"]", calendar['2020-11-11']);
+
+
+    const tab = ["kot", "pies", "chomik ninja"];
+    print("tab", tab);
+    print("tab.length", tab.length);
+    print("tab[\"length\"]", tab["length"]);
+
+
+    calendar["nowa_genowefa"] = "GENOWEFA";
+    print("calendar.nowa_genowefa", calendar.nowa_genowefa);
+    print("calendar[\"nowa_genowefa\"]", calendar["nowa_genowefa"]);
+
+    calendar.fun = function (x) { return 2 * x; };
+    print("calendar.fun()", calendar.fun());
+    print("calendar.fun(123)", calendar.fun(123));
+    print("calendar[\"fun\"](245)", calendar["fun"](245));
+
+    calendar["true"] = 456;
+    print("calendar[\"true\"]", calendar["true"]);
+    print("calendar.true", calendar.true);
+
+    calendar[666] = 6666;
+    print("calendar[\"666\"]", calendar["666"]);
+    print("calendar[666]", calendar[666]);
+    print("calendar.666", "--------------");
+
+    calendar["calendar"] = "Lupi de lup";
+    print("calendar[\"calendar\"]", calendar["calendar"]);
+    print("calendar.calendar", calendar.calendar);
+
+    calendar["calendar 2"] = "Lupi de lup 222";
+    print("calendar[\"calendar 2\"]", calendar["calendar 2"]);
+    //print("calendar.calendar 2", calendar.calendar 2);
+
+    print("getOwnPropertyDescriptor", Object.getOwnPropertyDescriptor(calendar, "calendar"));
+    console.log(Object.getOwnPropertyDescriptor(calendar, "666"));
+    console.log(Object.getOwnPropertyDescriptor(xyz, "nowaMet"));
+
+
+
+
+
+
+
+    var myObject = {
+      a: 2
+    };
+    myObject.a = 3;
+    myObject.a; // 3
+    Object.defineProperty(myObject, "a", {
+      value: 4,
+      writable: true,
+      configurable: false, // Brak możliwości konfiguracji!
+      enumerable: true
+    });
+    myObject.a; // 4
+    myObject.a = 5;
+    Object.defineProperty(myObject, "a", {
+      value: 4,
+      writable: false,
+      configurable: false,
+      enumerable: true
+    });
+    myObject.a = 5;
+
+    function NowaKlasa() {
+      this.PropStr = "Ala ma kota";
+      this.PropNum = 1 / 3;
+      this.PropArr = ["Ala", "ma", "kota", Math.print, 1 / 32];
+      this.seyHelo = () => {
+        print("", "===================================================");
+        print("this.PropStr", this.PropStr);
+        print("this.PropNum", this.PropNum);
+        print("this.PropArr", this.PropArr);
+        print("", "===================================================");
+      };
+
+    }
+
+    function NowszaKlasa() {
+      th
+     }
+
+
+
+    var nk = new NowaKlasa();
+    nk.seyHelo();
+    nk= new NowszaKlasa();
+    nk.seyHelo();
+    nk.seyHelo2();
+
+
+    function OrdynarnaFunkcja() {
+      if (this.PropStr !== undefined)
+        this.PropStr = "this.PropStr: " + this.PropStr;
+      else
+        this.PropStr = "this.PropStr: EMPTY";
+      print("this: ", this);
+      print("this.PropStr: ", this.PropStr);
+    }
+
+    OrdynarnaFunkcja();
+
+    nk.OrdynarnaFunkcja_nk = OrdynarnaFunkcja;
+    nk.OrdynarnaFunkcja_nk();
+    OrdynarnaFunkcja();
+    nk.OrdynarnaFunkcja_nk();
+
+    const ordFun2 = () => {
+      if (this.PropStr !== undefined)
+        this.PropStr = "this.PropStr: " + this.PropStr;
+      else
+        this.PropStr = "this.PropStr: EMPTY";
+      print("this: ", this);
+      print("this.PropStr: ", this.PropStr);
+    }
+
+
+    nk.ordFun2_nk = ordFun2;
+    ordFun2();
+    nk.ordFun2_nk();
+
+
+
+    NowaKlasa.prototype.NowaFunkcja2 = () => {
+      this.PropStr = "Wartość nadana przez funkcję NowaFunkcja2!";
+      print("this.PropStr", this.PropStr)
+    }
+
+
+    nk.NowaFunkcja2();
+    print("nk.PropStr", nk.PropStr)
+    //nk.OrdynarnaFunkcja();
+
+  </script>
+</body>
+
+</html>

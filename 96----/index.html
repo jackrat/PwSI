@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Obiekty_cd</title>
+    <meta charset="utf-8" />
+    <script>
+        var line = "=====================================================================";
+        function printL() { document.write(line, "<br />"); }
+        function print(l, o) { document.write(l, ": ", o, "<br />"); }
+        function printl(l) { document.write(l, "<br />"); }
+
+        function introduce(object) {
+            for (const key in object)
+                if (!object.hasOwnProperty(key))
+                    print("-" + key, object[key]);
+            for (const key in object)
+                if (object.hasOwnProperty(key))
+                    print("+" + key, object[key]);
+        }
+
+        function Class(id, stat) {
+            this.ID = id;
+            this.Status = stat;
+            this.Meldunek = function () {
+                txt = "Tu obiekt " + this.ID + ". Mój status: " + this.Status + ".";
+                for (const key in this) {
+                    txt2 = "";
+                    if (key !== "ID" && key !== "Status" && key !== "Meldunek") {
+
+                        txt2 += ", " + key + " " + this[key];
+                    }
+                }
+                if (txt2 !== "") txt += " Poza tym: " + txt2.substring(1) + ".";
+                return txt;
+            }
+        }
+
+        o1 = new Class(1, "OK");
+        o2 = new Class(2, "chory");
+        o3 = new Class(3, "martwy");
+        
+
+        Class.prototype.mam = "gorączkę i dreszcze";
+        o2["i to"] = "bardzo wysoką";
+
+        document.write(o1.Meldunek() + "<br/>");
+        document.write(o2.Meldunek() + "<br/>");
+        document.write(o3.Meldunek() + "<br/>");
+
+        function Class2() {
+            this.prototype = Class.prototype;
+        }
+
+        let o4 = Object.create(Class2);
+
+        printL()
+        introduce(o4);
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

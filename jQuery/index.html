@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello, jQuery world!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("button").click(() => $("p").css("background-color", "#" + Math.random().toString(16).substring(3, 6)));
+        });
+
+
+
+        $(function () {
+
+            $("#up2").css("font-size", "24pt");
+            $("p").click((e) => e.currentTarget.innerHTML = "CLICKCLICKCLICK");
+            $("p").mouseenter((e) => e.currentTarget.style.backgroundColor = "#ff0000");
+            $("p").mouseleave((e) => e.currentTarget.style.backgroundColor = "#00ff00");
+
+            $("div").mouseenter(() => $("div").css("background-color", "#ff0000"));
+            $("div").mouseleave(() => $("div").css("background-color", "#0000ff"));
+
+            $("div").click((e) => {
+                $("#" + e.currentTarget.id).hide();
+                setTimeout(()=>{$("#" + e.currentTarget.id).show(); }, 1000);
+            });
+
+
+            $("h2").mouseenter((e) => $("#"+e.currentTarget.id).fadeOut(500));
+            $("h2").mouseleave((e) => $("#"+e.currentTarget.id).fadeIn(500));
+
+
+            $("h3").mouseenter((e) => $("#"+e.currentTarget.id).slideUp(500));
+            $("h3").mouseleave((e) => $("#"+e.currentTarget.id).slideDown(500));
+
+            $("h4").mouseenter((e) => $("#"+e.currentTarget.id).slideUp(500));
+            $("h4").mouseleave((e) => $("#"+e.currentTarget.id).slideDown(500));
+
+
+
+           $("h4:last").html((new Date()).toLocaleTimeString());
+
+           $( "li" ).add( "p" ).css( "background-color", "red" );
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <button>CLICK!</button> <button>CLICK!</button> <button>CLICK!</button>
+
+    <H1>!!!!Strona odświeżona!!!!</H1>
+    <br /><br /><br />
+
+    <div id="up">Ala ma kota!</div>
+
+    <div id="up2">!@#$!@$!</div><br /><br /><br />
+    <div id="up3">OOOOOOOOOOOOOOOOO</div>
+
+
+    <p>Lorem...</p>
+    <p>...ipsum...</p>
+
+    <p>...dolor...</p>
+
+    <h2 id="h2a">Lorem...</h2>
+    <h2 id="h2b">...ipsum...</h2>
+    <h2 id="h2c">...dolor...</h2>
+
+    <h3 id="h3a">Lorem...</h3>
+    <h3 id="h3b">...ipsum...</h3>
+    <h3 id="h3c">...dolor...</h3>
+
+    <h4 id="h4a">Lorem...</h4>
+    <h4 id="h4b">...ipsum...</h4>
+    <h4 id="h4c">...dolor...</h4>
+
+    <ul>
+        <li>list item 1</li>
+        <li>list item 2</li>
+        <li>list item 3</li>
+      </ul>
+      <p>a paragraph</p>
+</body>
+
+</html>

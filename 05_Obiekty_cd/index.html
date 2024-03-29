@@ -1,0 +1,208 @@
+<html>
+
+<head>
+    <title>Obiekty_cd</title>
+    <script>
+        function print(l, o) {
+            document.write(l, ": ", o, "<br /><br />");
+        }
+
+
+        const Ob01 = {
+            kolor: "#FF0000",
+            nazwa: "czerwony",
+            marka: "Fiat",
+            rocznik: 2005,
+            zlomowanie: function (rokzlomowania) {
+                return "Zezłomowano w roku " + rokzlomowania;
+            }
+        }
+
+        print("", "---------------------------------------------------");
+
+        print("Ob01.kolor", Ob01.kolor);
+        delete Ob01.kolor;
+        print("Ob01.kolor", Ob01.kolor);
+
+        print("", "---------------------------------------------------");
+
+        for (const key in Ob01) {
+            print("Ob01." + key, Ob01[key]);
+        }
+
+        print("", "---------------------------------------------------");
+
+        for (const key in Ob01) {
+            if (Ob01.hasOwnProperty(key))
+                print("Ob01." + key, Ob01[key]);
+        }
+
+        print("", "---------------------------------------------------");
+
+
+
+        function car() {
+            this.kolor = "#FF0000";
+            this.nazwa = "czerwony";
+            this.marka = "Fiat";
+            this.rocznik = 2005;
+            this.zlomowanie = function (rokzlomowania) {
+                return "Zezłomowano w roku " + rokzlomowania;
+            }
+        }
+
+        function xyz(x) {
+            console.log(this + "   " + this.Z);
+            this.Z = x;
+            console.log(this, this.Z);
+        }
+
+        xyz(123);
+        let Ob02 = new xyz(234);
+
+        //let s = new String();
+
+        let Ob03 = new car();
+
+
+        print("(Ob03.__proto__ === car.prototype",
+            Ob03.__proto__ === car.prototype);
+
+        print("", "---------------------------------------------------");
+
+        const Ob04 = {};
+        Ob04.__proto__ = car.prototype;
+        car.call(Ob04);
+
+        print("", "------------- bez hasOwnProperty --------------------------------------");
+        for (const key in Ob04) {
+            print("Ob04." + key, Ob04[key]);
+        }
+
+        print("", "------------- z hasOwnProperty --------------------------------------");
+        for (const key in Ob04) {
+            if (Ob04.hasOwnProperty(key))
+                print("Ob04." + key, Ob04[key]);
+        }
+
+        print("", "---------------------------------------------------");
+
+        car.prototype = {
+            maxSzbkosc: 200,
+            pojemnosc: 2000,
+            remont: function (kiedy) {
+                return "Remont generalny w roku " + kiedy;
+            }
+        }
+
+
+        const Ob05 = new car();
+
+        print("", "------------- bez hasOwnProperty --------------------------------------");
+        for (const key in Ob05) {
+            print("Ob05." + key, Ob05[key]);
+        }
+
+        print("", "------------- z hasOwnProperty --------------------------------------");
+        for (const key in Ob05) {
+            if (Ob05.hasOwnProperty(key))
+                print("Ob05." + key, Ob05[key]);
+        }
+
+
+        car.prototype = function () {
+            this.nosnosc = 100;
+            this.zaladunek = function (b) {
+                if (b)
+                    return "załadowany";
+                else
+                    return "nie załadowany";
+
+            };
+        }
+
+        print("", "------------- bez hasOwnProperty --------------------------------------");
+        for (const key in Ob05) {
+            print("Ob05." + key, Ob05[key]);
+        }
+
+        print("", "------------- z hasOwnProperty --------------------------------------");
+        for (const key in Ob05) {
+            if (Ob05.hasOwnProperty(key))
+                print("Ob05." + key, Ob05[key]);
+        }
+
+
+        const Ob06 = new car();
+        print("", "------------- bez hasOwnProperty --------------------------------------");
+        for (const key in Ob06) {
+            print("Ob06." + key, Ob06[key]);
+        }
+
+        print("", "------------- z hasOwnProperty --------------------------------------");
+        for (const key in Ob06) {
+            if (Ob06.hasOwnProperty(key))
+                print("Ob06." + key, Ob06[key]);
+        }
+
+
+
+        car2 = function () {
+            this.nosnosc = 100;
+            this.zaladunek = function (b) {
+                if (b)
+                    return "załadowany";
+                else
+                    return "nie załadowany";
+
+            };
+        }
+
+        Ob07 = new car2();
+        Ob08 = new car2();
+
+        car2.prototype.masa = 400;
+        for (const key in Ob07) { print("Ob07." + key, Ob07[key]); }
+        for (const key in Ob08) { print("Ob08." + key, Ob08[key]); }
+
+
+        print("", "---------------------------------------------------");
+
+        const car3 = {
+            drive() { print("this ", "jadę 100km/h"); }
+        };
+
+        Object.setPrototypeOf(Ob07, car3);
+        //Object.setPrototypeOf(Ob08, car3);
+
+        for (const key in Ob07) { print("Ob07." + key, Ob07[key]); }
+        for (const key in Ob08) { print("Ob08." + key, Ob08[key]); }
+
+        print("", "---------------------------------------------------");
+
+        String.prototype.naszaMetoda = function () {
+            return this.charAt(0).toUpperCase() + this.substr(1);
+        }
+
+        var s1 = "ala ma kota";
+        print("s1", s1);
+        print("s1.naszaMetoda()", s1.naszaMetoda());
+
+
+        print("", "---------------------------------------------------");
+
+        Math.randMinMax = function (min, max) {
+            return min + (max - min) * Math.random();
+        }
+        for (let i = 0; i < 10; i++)
+            print("Math.randMinMax(5,10)", Math.randMinMax(5, 10));
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
